@@ -1,5 +1,8 @@
 package com.light.chen.user.controller;
 
+import com.light.chen.user.entity.User;
+import com.light.chen.user.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    @RequestMapping("/test")
-    public String test(){
-        return "SUCCESS";
+    @Autowired
+    private UserMapper userMapper;
+
+    @RequestMapping("/getByPhone")
+    public User getByPhone(String phone){
+        return userMapper.selectByPhone(phone);
     }
 
 }
